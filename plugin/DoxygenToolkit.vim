@@ -279,6 +279,12 @@ let s:licenseTag = s:licenseTag . "along with this program; if not, write to the
 let s:licenseTag = s:licenseTag . "Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.\<enter>"
 
 " Common standard constants
+if !exists("g:DoxygenToolkit_GroupID")
+  let g:DoxygenToolkit_GroupID = "Group: <ID>"
+endif
+if !exists("g:DoxygenToolkit_Summary")
+  let g:DoxygenToolkit_Summary = "<Explanation / Summary>"
+endif
 if !exists("g:DoxygenToolkit_briefTag_pre")
   let g:DoxygenToolkit_briefTag_pre = "@brief "
 endif
@@ -482,13 +488,18 @@ function! <SID>DoxygenAuthorFunc()
 
   " Begin to write skeleton
   let l:insertionMode = s:StartDocumentationBlock()
-  exec "normal ".l:insertionMode.s:interCommentTag.g:DoxygenToolkit_fileTag.l:fileName
-  exec "normal o".s:interCommentTag.g:DoxygenToolkit_briefTag_pre
+  exec "normal ".l:insertionMode.s:interCommentTag.g:DoxygenToolkit_blockHeader
+  exec "normal ".s:interCommentTag
+  exec "normal ".s:interCommentTag.l:fileName
+  exec "normal ".s:interCommentTag
+  exec "normal o".s:interCommentTag.g:DoxygenToolkit_Summary
   mark d
-  exec "normal o".s:interCommentTag.g:DoxygenToolkit_authorTag.g:DoxygenToolkit_authorName
-  exec "normal o".s:interCommentTag.g:DoxygenToolkit_versionTag.g:DoxygenToolkit_versionString
-  let l:date = strftime("%Y-%m-%d")
-  exec "normal o".s:interCommentTag.g:DoxygenToolkit_dateTag.l:date
+  exec "normal ".s:interCommentTag
+  exec "normal ".s:interCommentTag.g:DoxygenToolkit_GroupID
+  exec "normal ".s:interCommentTag
+  exec "normal o".s:interCommentTag.g:DoxygenToolkit_authorName
+  exec "normal ".s:interCommentTag
+  exec "normal o".s:interCommentTag.g:DoxygenToolkit_blockFooter
   if ( g:DoxygenToolkit_endCommentTag != "" )
     exec "normal o".s:endCommentTag
   endif
