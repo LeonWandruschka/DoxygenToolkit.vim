@@ -285,6 +285,12 @@ endif
 if !exists("g:DoxygenToolkit_Summary")
   let g:DoxygenToolkit_Summary = "<Explanation / Summary>"
 endif
+if !exists("g:DoxygenToolkit_blockHeader_AuthorBlock")
+  let g:DoxygenToolkit_blockHeader_AuthorBlock = ""
+endif
+if !exists("g:DoxygenToolkit_blockFooter_AuthorBlock")
+  let g:DoxygenToolkit_blockFooter_AuthorBlock = ""
+endif
 if !exists("g:DoxygenToolkit_briefTag_pre")
   let g:DoxygenToolkit_briefTag_pre = "@brief "
 endif
@@ -488,7 +494,7 @@ function! <SID>DoxygenAuthorFunc()
 
   " Begin to write skeleton
   let l:insertionMode = s:StartDocumentationBlock()
-  exec "normal ".l:insertionMode.s:interCommentTag.g:DoxygenToolkit_blockHeader
+  exec "normal ".l:insertionMode.s:interCommentTag.g:DoxygenToolkit_blockHeader_AuthorBlock
   exec "normal ".s:interCommentTag
   exec "normal ".s:interCommentTag.l:fileName
   exec "normal ".s:interCommentTag
@@ -499,7 +505,7 @@ function! <SID>DoxygenAuthorFunc()
   exec "normal ".s:interCommentTag
   exec "normal o".s:interCommentTag.g:DoxygenToolkit_authorName
   exec "normal ".s:interCommentTag
-  exec "normal o".s:interCommentTag.g:DoxygenToolkit_blockFooter
+  exec "normal o".s:interCommentTag.g:DoxygenToolkit_blockFooter_AuthorBlock
   if ( g:DoxygenToolkit_endCommentTag != "" )
     exec "normal o".s:endCommentTag
   endif
