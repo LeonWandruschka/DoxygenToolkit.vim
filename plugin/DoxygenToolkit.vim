@@ -485,16 +485,16 @@ function! <SID>DoxygenAuthorFunc()
   " Begin to write skeleton
   let l:insertionMode = s:StartDocumentationBlock()
   exec "normal ".l:insertionMode.s:interCommentTag.g:DoxygenToolkit_blockHeader_AuthorBlock
-  exec "normal ".s:interCommentTag
-  exec "normal ".s:interCommentTag.l:fileName
-  exec "normal ".s:interCommentTag
+  exec "normal o".s:interCommentTag
+  exec "normal o".s:interCommentTag.l:fileName
+  exec "normal o".s:interCommentTag
   exec "normal o".s:interCommentTag.g:DoxygenToolkit_Summary
   mark d
-  exec "normal ".s:interCommentTag
-  exec "normal ".s:interCommentTag.g:DoxygenToolkit_GroupID
-  exec "normal ".s:interCommentTag
+  exec "normal o".s:interCommentTag
+  exec "normal o".s:interCommentTag.g:DoxygenToolkit_GroupID
+  exec "normal o".s:interCommentTag
   exec "normal o".s:interCommentTag.g:DoxygenToolkit_authorName
-  exec "normal ".s:interCommentTag
+  exec "normal o".s:interCommentTag
   exec "normal o".s:interCommentTag.g:DoxygenToolkit_blockFooter_AuthorBlock
   if ( g:DoxygenToolkit_endCommentTag != "" )
     exec "normal o".s:endCommentTag
